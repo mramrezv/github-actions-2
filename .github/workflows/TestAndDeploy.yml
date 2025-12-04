@@ -15,6 +15,7 @@ jobs:
       - name: Run lint
         run: npm run lint
   test:
+    needs: lint
     runs-on: ubuntu-latest
     steps:
       - name : Get Code
@@ -24,10 +25,11 @@ jobs:
         with:
           node-version: 18
       - name: Install dependecies
-        run: npm 
+        run: npm ci
       - name: Run Test
         run: npm run test
   build:
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - name : Get Code
